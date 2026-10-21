@@ -203,7 +203,7 @@ dialog .im{height:220px}.dlg-b{padding:26px 30px 32px;max-height:56vh;overflow:a
 dialog h4{font-family:var(--d);font-size:30px;letter-spacing:-.02em;line-height:1.1}
 dialog li{margin:8px 0 0 18px}
 .x{position:absolute;right:14px;top:14px;z-index:4;width:42px;height:42px;border-radius:50%;border:0;background:var(--lime);color:var(--navy);font-size:24px;cursor:pointer}
-body:has(dialog[open]){overflow:hidden}
+html:has(dialog[open]){overflow:hidden;scrollbar-gutter:stable}
 .rings{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:44px}
 .rg{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 10px;text-align:center}
 .rg svg{width:104px;height:104px;transform:rotate(-90deg)}
@@ -366,7 +366,7 @@ dialog .sb{color:#9FC3D3;margin:6px 0 14px}
 /* v6 signature scroll */
 .chap{overflow:clip}
 .pc{background:linear-gradient(160deg,#0B2A3B,#071E2B);backdrop-filter:none}
-.rw.stk{position:sticky;top:84px}
+.rw{position:relative}.rw.stk{position:sticky;top:84px}
 .sr .w{opacity:.16;transition:opacity .35s}.sr .w.on{opacity:1}
 .sky{transform-origin:50% 100%}
 .bigw{position:absolute;left:0;bottom:3%;white-space:nowrap;font-family:var(--d);font-weight:800;font-size:clamp(120px,20vw,290px);letter-spacing:-.04em;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.1);pointer-events:none;z-index:1;will-change:transform}
@@ -375,8 +375,8 @@ dialog .sb{color:#9FC3D3;margin:6px 0 14px}
 .mapin .wrap{width:100%}
 .rt{fill:none;stroke:#D6F04F;stroke-width:3.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 5px #D6F04F)}
 #trav{fill:#fff;opacity:0;filter:drop-shadow(0 0 9px #D6F04F)}
-#dots{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:55;display:grid;gap:15px;mix-blend-mode:difference}
-#dots a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;color:#fff;font-size:13px}
+#dots{position:fixed;left:auto;width:auto;padding:0;pointer-events:none;right:16px;top:50%;transform:translateY(-50%);z-index:55;display:grid;gap:15px;mix-blend-mode:difference}
+#dots a{pointer-events:auto;display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;color:#fff;font-size:13px}
 #dots span{opacity:0;transform:translateX(8px);transition:opacity .25s,transform .25s}
 #dots a:hover span,#dots a.on span{opacity:1;transform:none}
 #dots i{width:10px;height:10px;border-radius:50%;border:2px solid #fff;transition:transform .25s,background .25s}
@@ -431,6 +431,60 @@ dialog .sb{color:#9FC3D3;margin:6px 0 14px}
 @keyframes hl{0%,18%{background:rgba(214,240,79,.2);border-color:var(--lime);box-shadow:0 0 28px rgba(214,240,79,.3)}22%,100%{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);box-shadow:none}}
 @media(max-width:860px){.hcx{max-width:340px;order:-1;margin-bottom:6px}.hb{min-width:78%}}
 @media(prefers-reduced-motion:reduce){.hb{animation:none!important}}
+
+/* v9 meeting scene */
+.hcx{width:min(540px,100%);justify-self:center}
+.hoc{display:block}
+#scene{width:100%;height:auto;display:block;border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.14)}
+#scene text{font-family:var(--b),Arial,sans-serif}
+.hcap2{display:flex;align-items:center;gap:9px;margin-top:12px;color:#BFD8E3;font-size:14px;justify-content:center}
+.hcap2 i{width:9px;height:9px;border-radius:50%;background:#ff4d4d;animation:k-blink 1.3s infinite}
+.hero .wrap{grid-template-columns:1fr 1.05fr}
+h1{font-size:clamp(36px,4.8vw,68px)}
+.scrl{animation:scrl 20s ease-in-out infinite}
+@keyframes scrl{0%,17%{transform:translateY(0)}25%,42%{transform:translateY(-150px)}50%,67%{transform:translateY(-300px)}75%,92%{transform:translateY(-450px)}100%{transform:translateY(-600px)}}
+.pg{transform-box:fill-box;transform-origin:left;animation:pgx 20s linear infinite}
+@keyframes pgx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.rec{animation:k-blink 1.2s infinite}
+.gw{animation:gwx 3.2s ease-in-out infinite}
+@keyframes gwx{50%{opacity:.62}}
+.nod{transform-box:fill-box;transform-origin:50% 100%;animation:nodx 3.6s ease-in-out infinite;animation-delay:var(--q,0s)}
+@keyframes nodx{0%,100%{transform:rotate(0)}40%{transform:translateY(3px) rotate(2.5deg)}70%{transform:translateY(1px) rotate(-1.6deg)}}
+.rz{animation:rzx 10s ease-in-out infinite}
+@keyframes rzx{0%,52%{opacity:0;transform:translateY(26px)}60%,78%{opacity:1;transform:none}86%,100%{opacity:0;transform:translateY(26px)}}
+.ar{animation:arx 3.4s ease-in-out infinite}
+@keyframes arx{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+.al{animation:alx 2.8s ease-in-out infinite}
+@keyframes alx{0%,100%{transform:rotate(0)}50%{transform:rotate(-17deg)}}
+.lh{animation:lhx 4.2s ease-in-out infinite}
+@keyframes lhx{0%,100%{transform:rotate(-2.2deg)}50%{transform:rotate(3deg)}}
+.bk{transform-box:fill-box;transform-origin:center;animation:bkx 4.2s infinite}
+@keyframes bkx{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.tk{transform-box:fill-box;transform-origin:center;animation:tkx .55s ease-in-out infinite alternate}
+@keyframes tkx{from{transform:scaleY(1)}to{transform:scaleY(.3)}}
+.ls{animation:lsx 1.4s ease-in-out infinite}
+@keyframes lsx{50%{opacity:.35}}
+.sb{opacity:0;transform-box:fill-box;transform-origin:50% 100%;animation:sbx 12s ease-in-out infinite;animation-delay:var(--q,0s)}
+@keyframes sbx{0%{opacity:0;transform:translateY(8px) scale(.92)}4%,28%{opacity:1;transform:none}33%,100%{opacity:0}}
+@media(max-width:860px){.hcx{max-width:440px;order:-1}}
+@media(prefers-reduced-motion:reduce){#scene *{animation:none!important}.sb:first-of-type{opacity:1}}
+
+/* v10 monthly meeting */
+.hbr{animation:hbrx 15s ease-in-out infinite}
+@keyframes hbrx{0%,17%{transform:translateY(0)}20%,37%{transform:translateY(15.5px)}40%,57%{transform:translateY(31px)}60%,77%{transform:translateY(46.5px)}80%,97%{transform:translateY(62px)}100%{transform:translateY(0)}}
+.tc2{stroke-dasharray:1;stroke-dashoffset:1;animation:tc2x 15s ease-in-out infinite;animation-delay:calc(var(--k)*3s + .8s)}
+@keyframes tc2x{0%{stroke-dashoffset:1}5%,84%{stroke-dashoffset:0}92%,100%{stroke-dashoffset:1}}
+.pg{animation-duration:15s}
+.ck1{animation:spin 40s linear infinite}.ck2{animation:spin 5s linear infinite}
+.ar2{animation:ar2x 2.6s ease-in-out infinite}
+@keyframes ar2x{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.pn{animation:pnx 1.1s ease-in-out infinite}
+@keyframes pnx{0%,100%{transform:translateX(-2px)}50%{transform:translateX(3px)}}
+.al{animation:alx 3s ease-in-out infinite}
+@keyframes alx{0%,100%{transform:rotate(0)}50%{transform:rotate(-14deg)}}
+.sb{animation-duration:16s}
+@keyframes sbx{0%{opacity:0;transform:translateY(8px) scale(.92)}3%,22%{opacity:1;transform:none}26%,100%{opacity:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -473,7 +527,7 @@ dialog .sb{color:#9FC3D3;margin:6px 0 14px}
 </div>
 <div class="pill"><span>Based in Qatar · open to GCC roles</span></div>
 </div>
-<div class="hcx" id="photo" data-a="zoom"><div class="hoc" id="fr"><div class="hcap">Hierarchy of controls<small>Most effective at the top</small></div><div class="hb" style="--i:0;--w:100%"><b>1</b><span><strong>Eliminate</strong><small>Remove the hazard</small></span></div><div class="hb" style="--i:1;--w:89%"><b>2</b><span><strong>Substitute</strong><small>Swap it for something safer</small></span></div><div class="hb" style="--i:2;--w:78%"><b>3</b><span><strong>Engineer</strong><small>Isolate people from it</small></span></div><div class="hb" style="--i:3;--w:67%"><b>4</b><span><strong>Administrate</strong><small>Change how the work is done</small></span></div><div class="hb" style="--i:4;--w:56%"><b>5</b><span><strong>Protect</strong><small>PPE as the last line</small></span></div></div></div>
+<div class="hcx" id="photo" data-a="zoom"><div class="hoc" id="fr"><svg id="scene" viewBox="0 0 520 440" role="img" aria-label="Animated illustration: Anoop, the team lead, chairing the monthly HSE meeting with his officers and supervisors around the table while the agenda is ticked off on the screen behind him"></svg></div></div>
 </div>
 <div class="scroll"></div>
 </header>
@@ -541,7 +595,7 @@ dialog .sb{color:#9FC3D3;margin:6px 0 14px}
 
 <footer><div class="wrap"><span>© 2026 Anoop Omanakuttan. Senior HSE Professional.</span><span>Qatar · Oman · India</span></div></footer>
 
-<nav id="dots" aria-label="Page sections"></nav>
+<div id="dots" role="navigation" aria-label="Page sections"></div>
 <a class="fab" href="https://wa.me/97430408614?text=Hello%20Anoop%2C%20I%20saw%20your%20portfolio." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.4-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.1z"/></svg></a>
 
 <script>
@@ -728,8 +782,8 @@ const sec=(t,a)=>a&&a.length?`<h5>${t}</h5><ul>${a.map(x=>`<li>${x}</li>`).join(
 let n=0;const P=[];
 $('#chaps').innerHTML=CH.map((c,ci)=>`<div class="chap" style="--c1:${c.c[0]};--c2:${c.c[1]}"><div class="art" data-par>${art(c.art)}</div><div class="bigyr" data-par aria-hidden="true">${c.y.slice(0,4)}</div><div class="bigw" aria-hidden="true">${["QATAR","OMAN","DOHA","INDIA"][ci]}</div>${fl(['flame','bolt','doc','hat'][ci],64,'88%','12%',ci)}<div class="wrap"><div class="chh" data-a="${c.a==='zoom'?'zoom':'up'}"><span class="yrl">${c.y}</span><h3>${c.t}</h3></div><div class="tl"><div class="fill"></div>${c.p.map(p=>{P.push(p);return `<div class="rw" data-a="${c.a}" style="--i:${n++%2}"><article class="pc">${scr(p)}<div class="bd"><h4>${p.t}</h4><div class="co">${p.r}, ${p.co}</div><dl class="mt">${meta(p)}</dl><div class="fa">${p.f.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div><ul class="sl">${p.sp.slice(0,3).map(x=>`<li>${x}</li>`).join('')}</ul><button class="btn sm" data-p="${P.length-1}">View project details</button></div></article></div>`}).join('')}</div></div></div>`).join('');
 wire(document);
-const dlg=$('#dlg');
-document.addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(b){const p=P[+b.dataset.p];$('#dc').innerHTML=`${scr(p)}<div class="dlg-b"><h4>${p.t}</h4><p class="sb">${p.r}, ${p.co}</p><dl class="mt">${meta(p)}</dl><div class="fa">${p.f.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>${sec('Scope of work',p.sp)}${sec('What I did',p.pts)}${sec('Controls and systems',p.ctl)}${sec('Recognition',p.rc)}</div>`;wire(dlg);dlg.showModal()}if(e.target===dlg||e.target.closest('.x'))dlg.close()});
+const dlg=$('#dlg');dlg.addEventListener('close',()=>{if(dlg._y!=null)scrollTo({top:dlg._y,behavior:'instant'})});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(b){const p=P[+b.dataset.p];$('#dc').innerHTML=`${scr(p)}<div class="dlg-b"><h4>${p.t}</h4><p class="sb">${p.r}, ${p.co}</p><dl class="mt">${meta(p)}</dl><div class="fa">${p.f.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>${sec('Scope of work',p.sp)}${sec('What I did',p.pts)}${sec('Controls and systems',p.ctl)}${sec('Recognition',p.rc)}</div>`;wire(dlg);const y0=scrollY;b.blur();dlg._y=y0;dlg.showModal();requestAnimationFrame(()=>{if(Math.abs(scrollY-y0)>2)scrollTo({top:y0,behavior:'instant'})})}if(e.target===dlg||e.target.closest('.x'))dlg.close()});
 // rings
 const R=[["PTW management",95],["SIMOPS",95],["Electrical safety",90],["Investigations",90],["Leadership",92]];
 $('#rings').innerHTML=R.map(r=>`<div class="rg" data-a="up" style="--o:${(264*(1-r[1]/100)).toFixed(1)};--i:${R.indexOf(r)}"><div class="rb"><svg viewBox="0 0 100 100"><circle class="t" cx="50" cy="50" r="42"/><circle class="v" cx="50" cy="50" r="42"/></svg><b data-to="${r[1]}" data-suf="%">0%</b></div><span>${r[0]}</span></div>`).join('');
@@ -761,6 +815,56 @@ $$('.rv,[data-a]:not(.rg)').forEach(el=>io.observe(el));
 const rio=new IntersectionObserver(es=>es.forEach(e=>{const t=e.target,b=t.querySelector('b');if(e.isIntersecting){t.classList.add('in');count(b)}else{t.classList.remove('in');b._id=(b._id||0)+1;b.textContent='0%'}}),{threshold:.55});
 $$('.rg').forEach(r=>rio.observe(r));$$('.stats .c').forEach(el=>{el.classList.add('rv');io.observe(el)});
 const ao=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('act',e.isIntersecting)),{rootMargin:'-35% 0px -35% 0px'});$$('.chap').forEach(c=>ao.observe(c));
+// ===== animated HSE meeting scene: monthly meeting, team lead seated at the head of the table
+(()=>{
+const LI='#D6F04F',CX=260,CY=322,RX=188,RY=46;
+const ed=x=>CY-RY*Math.sqrt(Math.max(0,1-((x-CX)/RX)**2));
+const SK=['#C98F63','#8D5A3B','#E3B08A','#A9714C','#7A4B30'];
+const AG=["Review of last month’s actions","Incidents and near misses","Inspections and audits","Permit to Work and SIMOPS","High-risk work planned ahead"];
+const row=i=>78+i*15.5;
+const agenda=`<rect x="128" y="24" width="264" height="132" fill="#0A2A3E"/><text x="140" y="64" font-size="15" font-weight="800" fill="#fff">Agenda</text>
+<rect class="hbr" x="136" y="${row(0)-8.5}" width="248" height="15" rx="5" fill="rgba(214,240,79,.17)"/>
+${AG.map((t,i)=>`<circle cx="148" cy="${row(i)}" r="5.2" fill="none" stroke="${LI}" stroke-width="1.3"/><path class="tc2" style="--k:${i}" pathLength="1" d="M145.5 ${row(i)}l2.2 2.4 4.2-5" fill="none" stroke="${LI}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><text x="160" y="${row(i)+3.3}" font-size="9.5" fill="#DCE8EE">${t}</text>`).join('')}
+<rect x="128" y="24" width="264" height="16" fill="#04141C" opacity=".95"/><circle class="rec" cx="380" cy="32" r="2.8" fill="#ff4d4d"/>
+<rect x="128" y="151" width="264" height="5" fill="rgba(255,255,255,.14)"/><rect class="pg" x="128" y="151" width="264" height="5" fill="${LI}"/>`;
+const face=(x,y,sk,hat,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${sk}"/><circle cx="${x-5.5}" cy="${y+2}" r="1.7" fill="#111"/><circle cx="${x+5.5}" cy="${y+2}" r="1.7" fill="#111"/><path d="M${x-5} ${y+8}Q${x} ${y+11} ${x+5} ${y+8}" stroke="#4a2a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M${x-18} ${y-3}Q${x-18} ${y-21} ${x} ${y-21}Q${x+18} ${y-21} ${x+18} ${y-3}Z" fill="${hat}"/><rect x="${x-21}" y="${y-4}" width="42" height="5" rx="2.5" fill="${hat}"/><rect x="${x-2.5}" y="${y-21}" width="5" height="17" fill="rgba(0,0,0,.14)"/>`;
+const vestT=(x,y,v,w=54)=>`<rect x="${x-w/2}" y="${y+16}" width="${w}" height="64" rx="16" fill="${v}"/><rect x="${x-w/2}" y="${y+36}" width="${w}" height="5" fill="#E8F0F3" opacity=".85"/><rect x="${x-w/2}" y="${y+52}" width="${w}" height="5" fill="#E8F0F3" opacity=".85"/><rect x="${x-1.2}" y="${y+16}" width="2.4" height="64" fill="#0B1F2A" opacity=".5"/><rect x="${x-5}" y="${y+12}" width="10" height="9" fill="#a0603c"/>`;
+const front=(x,i,hat,vest,q,raise)=>{const y=232,sk=SK[i%5];return `<g class="nod" style="--q:${q}s">${vestT(x,y,vest)}<rect x="${x-5}" y="${y+12}" width="10" height="9" fill="${sk}"/>${face(x,y,sk,hat,15)}${raise?`<g class="rz"><path d="M${x+24} ${y+30}L${x+37} ${y-18}" stroke="${vest}" stroke-width="12" stroke-linecap="round"/><circle cx="${x+37}" cy="${y-23}" r="7" fill="${sk}"/></g>`:''}</g>`};
+const back=(x,y,i,hat,vest,q)=>{const sk=SK[i%5];return `<g class="nod" style="--q:${q}s"><rect x="${x-42}" y="${y+16}" width="84" height="80" rx="30" fill="#14222D"/><rect x="${x-42}" y="${y+30}" width="84" height="70" rx="28" fill="${vest}"/><path d="M${x-30} ${y+40}L${x+30} ${y+86}M${x+30} ${y+40}L${x-30} ${y+86}" stroke="#E8F0F3" stroke-width="5" opacity=".85"/><rect x="${x-1.5}" y="${y+30}" width="3" height="70" fill="#0B1F2A" opacity=".4"/><rect x="${x-6}" y="${y+10}" width="12" height="12" fill="${sk}"/><circle cx="${x}" cy="${y}" r="18" fill="${sk}"/><path d="M${x-21} ${y+2}Q${x-21} ${y-23} ${x} ${y-23}Q${x+21} ${y-23} ${x+21} ${y+2}Z" fill="${hat}"/><rect x="${x-24}" y="${y-1}" width="48" height="6" rx="3" fill="${hat}"/><rect x="${x-3}" y="${y-23}" width="6" height="22" fill="rgba(0,0,0,.14)"/></g>`};
+const side=(x,dir,i,hat,vest,q)=>{const y=262,sk=SK[i%5];return `<g class="nod" style="--q:${q}s"><g transform="translate(${x} 0) scale(${dir} 1)"><rect x="-23" y="${y+14}" width="46" height="84" rx="18" fill="${vest}"/><rect x="-23" y="${y+38}" width="46" height="5" fill="#E8F0F3" opacity=".85"/><rect x="-23" y="${y+56}" width="46" height="5" fill="#E8F0F3" opacity=".85"/><rect x="-5" y="${y+9}" width="10" height="10" fill="${sk}"/><path d="M2 ${y+30}L34 ${y+54}" stroke="${vest}" stroke-width="12" stroke-linecap="round"/><circle cx="37" cy="${y+56}" r="6.5" fill="${sk}"/><circle cx="0" cy="${y}" r="15" fill="${sk}"/><circle cx="15" cy="${y+3}" r="3.4" fill="${sk}"/><circle cx="7" cy="${y-1.5}" r="1.7" fill="#111"/><path d="M-17 ${y-3}Q-17 ${y-21} 0 ${y-21}Q17 ${y-21} 17 ${y-3}Z" fill="${hat}"/><rect x="-20" y="${y-4}" width="46" height="5" rx="2.5" fill="${hat}"/></g></g>`};
+const lap=x=>`<rect x="${x-21}" y="${ed(x)-13}" width="42" height="24" rx="3" fill="#17232D" stroke="#2D4B5E"/><circle cx="${x}" cy="${ed(x)-1}" r="2.6" fill="${LI}" opacity=".75"/>`;
+const head=(x,c)=>`<g class="lh" style="transform-origin:${x}px ${c+22}px"><circle cx="${x-22}" cy="${c+3}" r="5" fill="#B07A55"/><circle cx="${x+22}" cy="${c+3}" r="5" fill="#B07A55"/><circle cx="${x}" cy="${c}" r="22" fill="#B07A55"/><ellipse cx="${x}" cy="${c+14}" rx="2.4" ry="1.8" fill="#8E5C3E"/>
+<path d="M${x-22} ${c+3}Q${x-25} ${c+33} ${x} ${c+37}Q${x+25} ${c+33} ${x+22} ${c+3}Q${x+14} ${c+20} ${x} ${c+20}Q${x-14} ${c+20} ${x-22} ${c+3}Z" fill="#1A1716"/><path d="M${x-12} ${c+23}Q${x-8} ${c+30} ${x-10} ${c+35}M${x+12} ${c+23}Q${x+8} ${c+30} ${x+10} ${c+35}" stroke="#8A8A8A" stroke-width="1.5" fill="none" opacity=".7"/>
+<ellipse class="tk" cx="${x}" cy="${c+27}" rx="5" ry="3.2" fill="#4B1D1D"/>
+<rect x="${x-19}" y="${c-2}" width="15" height="12" rx="4.5" fill="rgba(255,255,255,.1)" stroke="#0D0D0D" stroke-width="2.4"/><rect x="${x+4}" y="${c-2}" width="15" height="12" rx="4.5" fill="rgba(255,255,255,.1)" stroke="#0D0D0D" stroke-width="2.4"/><path d="M${x-4} ${c+3}H${x+4}" stroke="#0D0D0D" stroke-width="2"/>
+<ellipse class="bk" cx="${x-11.5}" cy="${c+4.5}" rx="2.2" ry="2.7" fill="#111"/><ellipse class="bk" cx="${x+11.5}" cy="${c+4.5}" rx="2.2" ry="2.7" fill="#111"/>
+<path d="M${x-19} ${c-6}q7-4 14 0M${x+5} ${c-6}q7-4 14 0" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M${x-25} ${c-5}Q${x-25} ${c-32} ${x} ${c-32}Q${x+25} ${c-32} ${x+25} ${c-5}Z" fill="#F4F7F9"/><rect x="${x-28}" y="${c-7}" width="56" height="6" rx="3" fill="#DCE5EA"/><rect x="${x-4}" y="${c-32}" width="8" height="26" fill="${LI}"/></g>`;
+const leadTop=(x,c)=>`<rect x="${x-40}" y="${c+4}" width="80" height="96" rx="26" fill="#0D1A24"/><rect x="${x-35}" y="${c+24}" width="70" height="90" rx="20" fill="#1A222C"/><path d="M${x-9} ${c+24}L${x+9} ${c+24}L${x} ${c+56}Z" fill="#F2F6F8"/><rect x="${x-35}" y="${c+28}" width="25" height="86" rx="8" fill="#C8E32A"/><rect x="${x+10}" y="${c+28}" width="25" height="86" rx="8" fill="#C8E32A"/><rect x="${x-6}" y="${c+16}" width="12" height="14" fill="#B07A55"/>${head(x,c)}`;
+const leadArms=(x,c)=>{const t=ed(x);return `<rect x="${x-78}" y="${t+6}" width="44" height="28" rx="2" fill="#F2F7F9" transform="rotate(-5 ${x-56} ${t+20})"/><path d="M${x-74} ${t+14}h30M${x-74} ${t+21}h26M${x-74} ${t+28}h30" stroke="#9FB4BF" stroke-width="1.4" transform="rotate(-5 ${x-56} ${t+20})"/>
+<g class="ar2" style="transform-origin:${x-52}px ${t+8}px"><path d="M${x-35} ${c+34}L${x-52} ${t+8}L${x-42} ${t+18}" fill="none" stroke="#1A222C" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${x-42}" cy="${t+18}" r="7.5" fill="#B07A55"/><g class="pn"><path d="M${x-42} ${t+18}l-12 5" stroke="${LI}" stroke-width="2.4" stroke-linecap="round"/></g></g>
+<g class="al" style="transform-origin:${x+52}px ${t+8}px"><path d="M${x+35} ${c+34}L${x+52} ${t+8}L${x+72} ${t+2}" fill="none" stroke="#1A222C" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${x+74}" cy="${t+1}" r="8" fill="#B07A55"/></g>
+<rect x="${x-21}" y="${t-13}" width="42" height="24" rx="3" fill="#17232D" stroke="#2D4B5E"/><circle cx="${x}" cy="${t-1}" r="2.6" fill="${LI}" opacity=".75"/>
+`};
+const bub=(t,bx,w,tx,q)=>`<g class="sb" style="--q:${q}s"><rect x="${bx}" y="164" width="${w}" height="30" rx="11" fill="#fff"/><path d="M${tx-6} 193L${tx+6} 193L${tx} 204Z" fill="#fff"/><text x="${bx+w/2}" y="183.5" text-anchor="middle" font-size="11" font-weight="700" fill="#0B3C55">${t}</text></g>`;
+const LX=CX,LC=228;
+document.getElementById('scene').innerHTML=`<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C3A52"/><stop offset="1" stop-color="#08202D"/></linearGradient><linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B2533"/><stop offset="1" stop-color="#05121A"/></linearGradient><linearGradient id="tab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A5D72"/><stop offset="1" stop-color="#1E3A4A"/></linearGradient><radialGradient id="glow"><stop offset="0" stop-color="#7FD1E8" stop-opacity=".5"/><stop offset="1" stop-color="#7FD1E8" stop-opacity="0"/></radialGradient><clipPath id="scrc"><rect x="128" y="24" width="264" height="132"/></clipPath></defs>
+<rect width="520" height="440" rx="22" fill="url(#wall)"/><path d="M130 0V330M260 0V330M390 0V330" stroke="rgba(255,255,255,.045)"/><rect y="330" width="520" height="110" fill="url(#floor)"/>
+<ellipse class="gw" cx="260" cy="92" rx="240" ry="120" fill="url(#glow)"/>
+<path d="M44 34L62 66H26Z" fill="#F2C94C" stroke="#111" stroke-width="2" stroke-linejoin="round"/><text x="44" y="60" text-anchor="middle" font-size="16" font-weight="800">!</text><rect x="50" y="116" width="14" height="38" rx="4" fill="#C0392B"/><rect x="53" y="110" width="8" height="8" rx="2" fill="#222"/>
+<circle cx="466" cy="56" r="19" fill="#0A2A3E" stroke="#1F4F66" stroke-width="2"/><path class="ck1" style="transform-origin:466px 56px" d="M466 56V44" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path class="ck2" style="transform-origin:466px 56px" d="M466 56V40" stroke="${LI}" stroke-width="1.6" stroke-linecap="round"/><circle cx="466" cy="56" r="2" fill="#fff"/>
+<rect x="120" y="16" width="280" height="148" rx="12" fill="#03121A" stroke="#1F4F66" stroke-width="2"/><g clip-path="url(#scrc)">${agenda}</g>
+${leadTop(LX,LC)}
+${front(150,1,'#F4F7F9','#C8E32A',.7,false)}${front(370,2,'#2F80ED','#FF8A1F',1.4,true)}
+${side(40,1,3,'#F5C518','#FF8A1F',.3)}${side(480,-1,4,'#F28C28','#C8E32A',1.9)}
+<ellipse cx="${CX}" cy="${CY+16}" rx="${RX+4}" ry="${RY}" fill="#08161F"/><ellipse cx="${CX}" cy="${CY}" rx="${RX}" ry="${RY-2}" fill="url(#tab)"/><ellipse cx="${CX}" cy="${CY}" rx="${RX-10}" ry="${RY-9}" fill="none" stroke="rgba(255,255,255,.13)"/>
+${leadArms(LX,LC)}${lap(150)}${lap(370)}
+<rect x="216" y="326" width="26" height="17" rx="1.5" fill="#EAF2F5" transform="rotate(-8 229 334)"/><rect x="282" y="330" width="26" height="17" rx="1.5" fill="#F7FAFB" transform="rotate(7 295 338)"/>
+<rect x="188" y="328" width="11" height="9" rx="2" fill="#fff"/><ellipse cx="193.5" cy="328" rx="5.5" ry="2.4" fill="#d9e6ec"/><rect x="326" y="326" width="11" height="9" rx="2" fill="#fff"/><ellipse cx="331.5" cy="326" rx="5.5" ry="2.4" fill="#d9e6ec"/>
+${back(172,368,3,'#F4F7F9','#FF8A1F',.5)}${back(350,372,4,'#F5C518','#C8E32A',1.2)}
+${bub('Last month’s actions first',172,176,255,0)}${bub('Inspection findings?',74,140,150,4)}${bub('Next month’s lifts',312,124,370,8)}${bub('Owners and dates, please',172,162,262,12)}`;
+})();
+
 // ===== signature scroll effects
 const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
