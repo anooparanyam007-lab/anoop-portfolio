@@ -637,6 +637,16 @@ html.lowfx .rg,html.lowfx .sk>div,html.lowfx form,html.lowfx .tile,html.lowfx .i
 html.lowfx .gb{background:rgba(8,18,30,.95)}
 html.lowfx .stats{background:rgba(6,11,20,.85)!important}
 @media(max-width:860px){.ct{grid-template-columns:minmax(0,1fr)!important}.ct>*{min-width:0}.lk,.lk *{min-width:0;overflow-wrap:anywhere}form{min-width:0}}
+
+/* chapter background: year range + country stay with the chapter on screen */
+.chap{position:relative;overflow:clip!important}
+.bgs{position:sticky;top:0;height:100vh;margin-bottom:-100vh;pointer-events:none;z-index:1;overflow:hidden}
+.bgs .bigyr{position:absolute;right:3%;top:15%;font-size:clamp(70px,14vw,200px);line-height:.85;-webkit-text-stroke:2px rgba(255,255,255,.14);will-change:auto}
+.bgs .bigw{position:absolute;left:0;bottom:6%;font-size:clamp(90px,17vw,250px);-webkit-text-stroke:2px rgba(255,255,255,.12)}
+.pc{background:rgba(8,18,30,.66)!important;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+html.lowfx .pc{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(8,18,30,.8)!important}
+.bgs .bigyr{-webkit-text-stroke:2px rgba(255,255,255,.2)}
+.bgs .bigw{-webkit-text-stroke:2px rgba(255,255,255,.17)}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -934,7 +944,7 @@ pts:["Safety monitoring during erection and heavy lifting of the coal handling s
 const meta=p=>`<dt>Period</dt><dd>${p.per}</dd><dt>Location</dt><dd>${p.loc}</dd>${p.cl?`<dt>Client</dt><dd>${p.cl}</dd>`:''}`;
 const sec=(t,a)=>a&&a.length?`<h5>${t}</h5><ul>${a.map(x=>`<li>${x}</li>`).join('')}</ul>`:'';
 let n=0;const P=[];
-$('#chaps').innerHTML=CH.map((c,ci)=>`<div class="chap" style="--c1:${c.c[0]};--c2:${c.c[1]}"><div class="art" data-par>${art(c.art)}</div><div class="bigyr" data-par aria-hidden="true">${c.y.slice(0,4)}</div><div class="bigw" aria-hidden="true">${["QATAR","OMAN","DOHA","INDIA"][ci]}</div>${fl(['flame','bolt','doc','hat'][ci],64,'88%','12%',ci)}<div class="wrap"><div class="chh" data-a="${c.a==='zoom'?'zoom':'up'}"><span class="yrl">${c.y}</span><h3>${c.t}</h3></div><div class="tl"><div class="fill"></div>${c.p.map(p=>{P.push(p);return `<div class="rw" data-a="${c.a}" style="--i:${n++%2}"><article class="pc">${scr(p)}<div class="bd"><h4>${p.t}</h4><div class="co">${p.r}, ${p.co}</div><dl class="mt">${meta(p)}</dl><div class="fa">${p.f.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div><ul class="sl">${p.sp.slice(0,3).map(x=>`<li>${x}</li>`).join('')}</ul><button class="btn sm" data-p="${P.length-1}">View project details</button></div></article></div>`}).join('')}</div></div></div>`).join('');
+$('#chaps').innerHTML=CH.map((c,ci)=>`<div class="chap" style="--c1:${c.c[0]};--c2:${c.c[1]}"><div class="art" data-par>${art(c.art)}</div><div class="bgs" aria-hidden="true"><div class="bigyr">${c.y.replace(/\s/g,"").replace(/–(\d\d)(\d\d)/,"–$2").replace("Present","Now")}</div><div class="bigw">${["QATAR","OMAN","QATAR","INDIA"][ci]}</div></div>${fl(['flame','bolt','doc','hat'][ci],64,'88%','12%',ci)}<div class="wrap"><div class="chh" data-a="${c.a==='zoom'?'zoom':'up'}"><span class="yrl">${c.y}</span><h3>${c.t}</h3></div><div class="tl"><div class="fill"></div>${c.p.map(p=>{P.push(p);return `<div class="rw" data-a="${c.a}" style="--i:${n++%2}"><article class="pc">${scr(p)}<div class="bd"><h4>${p.t}</h4><div class="co">${p.r}, ${p.co}</div><dl class="mt">${meta(p)}</dl><div class="fa">${p.f.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div><ul class="sl">${p.sp.slice(0,3).map(x=>`<li>${x}</li>`).join('')}</ul><button class="btn sm" data-p="${P.length-1}">View project details</button></div></article></div>`}).join('')}</div></div></div>`).join('');
 wire(document);
 const dlg=$('#dlg');dlg.addEventListener('close',()=>{if(dlg._y!=null)scrollTo({top:dlg._y,behavior:'instant'})});
 document.addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(b){const p=P[+b.dataset.p];$('#dc').innerHTML=`${scr(p)}<div class="dlg-b"><h4>${p.t}</h4><p class="sb">${p.r}, ${p.co}</p><dl class="mt">${meta(p)}</dl><div class="fa">${p.f.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>${sec('Scope of work',p.sp)}${sec('What I did',p.pts)}${sec('Controls and systems',p.ctl)}${sec('Recognition',p.rc)}</div>`;wire(dlg);const y0=scrollY;b.blur();dlg._y=y0;dlg.showModal();requestAnimationFrame(()=>{if(Math.abs(scrollY-y0)>2)scrollTo({top:y0,behavior:'instant'})})}if(e.target===dlg||e.target.closest('.x'))dlg.close()});
